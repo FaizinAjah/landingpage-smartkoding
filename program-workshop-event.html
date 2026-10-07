@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event & Workshop Gratis Developer — Smart Koding Academy</title>
+  <meta name="description" content="Daftar webinar & workshop pemrograman web gratis dari Smart Koding Academy. Bedah arsitektur backend, roadmap karier software engineer, dan live coding langsung bersama praktisi perbankan.">
+  <meta name="keywords" content="webinar koding gratis, workshop laravel gratis, webinar programmer pasuruan, event teknologi gratis, roadmap web developer">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --yellow-primary: #FFC400;
+      --yellow-bright: #FFD600;
+      --yellow-light: #FFF9DB;
+      --yellow-tint: #FEFCE8;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --amber-700: #B45309;
+
+      --bg-canvas: #FCFBF7;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #FFFDF5;
+      --bg-elevated: #F9F7F1;
+      
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+
+      --border-light: rgba(226, 232, 240, 0.9);
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 16px 36px -6px rgba(15, 23, 42, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-canvas);
+      color: var(--text-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .bg-mesh-sunny {
+      background-image:
+        radial-gradient(at 10% 10%, rgba(255, 196, 0, 0.16) 0px, transparent 45%),
+        radial-gradient(at 90% 12%, rgba(245, 158, 11, 0.14) 0px, transparent 48%),
+        radial-gradient(at 50% 45%, rgba(255, 252, 232, 0.85) 0px, transparent 65%);
+      background-attachment: fixed;
+    }
+    .container { max-width: 1260px; margin: 0 auto; padding: 0 1.25rem; }
+    a { text-decoration: none; color: inherit; }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #FFCD00, #F59E0B);
+      color: #0F172A;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.45);
+      background: linear-gradient(135deg, #FFD600, #D97706);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #FFFFFF;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-light);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      border-color: var(--amber-500);
+      background: var(--yellow-tint);
+      transform: translateY(-2px);
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--yellow-light);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber-700);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Site Header */
+    .site-header {
+      background: rgba(252, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.6rem;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-badge {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #FFD600, #F59E0B);
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+    .brand-sub {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      color: var(--amber-700);
+      font-weight: 700;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.75rem;
+    }
+    .nav-menu a {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-body);
+    }
+    .nav-menu a:hover { color: var(--amber-600); }
+
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--amber-600);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+    .dropdown-panel {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 320px;
+      padding: 0.75rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      z-index: 101;
+    }
+    .dropdown:hover .dropdown-panel { display: flex; }
+    .dropdown-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-md);
+      transition: background 0.2s;
+    }
+    .dropdown-item:hover { background: var(--yellow-light); }
+    .dropdown-item.active { background: var(--yellow-tint); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .dropdown-icon {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: var(--radius-sm);
+      background: var(--yellow-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .dropdown-item h5 { font-size: 0.82rem; font-weight: 800; color: var(--text-main); }
+    .dropdown-item p { font-size: 0.68rem; color: var(--text-muted); line-height: 1.35; margin-top: 0.15rem; }
+
+    /* Breadcrumb */
+    .breadcrumb-bar {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .breadcrumb-list a:hover { color: var(--amber-600); }
+    .breadcrumb-active { color: var(--amber-700); font-weight: 700; }
+
+    /* Hero */
+    .event-hero { padding: 3.5rem 0 4.5rem; }
+    .event-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-heading {
+      font-size: 2.85rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.15;
+      margin: 0.5rem 0 1.25rem;
+    }
+    .highlight-gold {
+      background: linear-gradient(135deg, #D97706, #FFB703);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .specs-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+    .spec-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Ticket Pass Mockup */
+    .ticket-card {
+      background: #FFFFFF;
+      border: 2px dashed #F59E0B;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: 0 16px 40px rgba(245, 158, 11, 0.2);
+      position: relative;
+    }
+    .ticket-tag {
+      background: #10B981;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .ticket-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .ticket-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 1.25rem 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* Event Cards */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .event-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s;
+    }
+    .event-card:hover {
+      border-color: var(--amber-500);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .event-date-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--amber-700);
+      background: var(--yellow-light);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      width: fit-content;
+      margin-bottom: 0.85rem;
+    }
+
+    /* Bento */
+    .bento-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .bento-card {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      transition: all 0.25s ease;
+    }
+    .bento-card:hover {
+      border-color: var(--amber-500);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      background: #FFFFFF;
+    }
+    .bento-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: var(--radius-md);
+      background: var(--yellow-light);
+      color: var(--amber-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .bento-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); }
+    .bento-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* Footer */
+    .site-footer {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      padding: 4rem 0 2rem;
+      margin-top: 5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-col h5 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col a { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-col a:hover { color: var(--amber-600); }
+    .footer-bottom {
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 960px) {
+      .event-hero-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: 1fr; }
+      .bento-grid-3 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-menu { display: none; }
+    }
+  </style>
+</head>
+<body class="bg-mesh-sunny">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">SK</div>
+        <div>
+          <div class="brand-title">Smart Koding</div>
+          <div class="brand-sub">Academy • Pasuruan</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li class="dropdown">
+          <button class="dropdown-btn">
+            <span>Program Kelas</span>
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="dropdown-panel">
+            <a href="program-web-lanjut.html" class="dropdown-item">
+              <div class="dropdown-icon">&lt;/&gt;</div>
+              <div>
+                <h5>Web Tingkat Lanjut</h5>
+                <p>PHP Laravel 11, REST API & MySQL. Rp50rb/bln atau Rp300rb/smt.</p>
+              </div>
+            </a>
+            <a href="program-offline-lab.html" class="dropdown-item">
+              <div class="dropdown-icon">🖥️</div>
+              <div>
+                <h5>Kelas Offline Lab Pasuruan</h5>
+                <p>Tatap muka praktikum komputer spek tinggi. Maks 10 siswa.</p>
+              </div>
+            </a>
+            <a href="program-online-bootcamp.html" class="dropdown-item">
+              <div class="dropdown-icon">🌐</div>
+              <div>
+                <h5>Online Live Bootcamp</h5>
+                <p>Kurikulum video, sesi review mingguan & Discord VIP.</p>
+              </div>
+            </a>
+            <a href="program-workshop-event.html" class="dropdown-item active">
+              <div class="dropdown-icon">🎟️</div>
+              <div>
+                <h5>Event & Workshop Gratis</h5>
+                <p>Webinar arsitektur backend & bedah portofolio kerja.</p>
+              </div>
+            </a>
+            <div style="border-top: 1px dashed var(--border-light); margin-top: 0.35rem; padding-top: 0.5rem; text-align: center;">
+              <a href="kelas.html" style="font-size: 0.72rem; font-weight: 800; color: var(--amber-600); display: inline-flex; align-items: center; gap: 0.35rem;">
+                <span>Lihat Semua Katalog Program</span>
+                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#jadwal">Jadwal Event</a></li>
+        <li><a href="#benefit">Benefit Peserta</a></li>
+        <li><a href="#pembicara">Pembicara</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20RSVP%20Workshop%20Gratis" target="_blank" class="btn-gold">
+          <span>Daftar RSVP Gratis</span>
+          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb-list">
+        <a href="index.html">Beranda</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="kelas.html">Program Kelas</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-active">Event & Workshop Gratis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="event-hero">
+    <div class="container">
+      <div class="event-hero-grid">
+        <div>
+          <span class="section-tag"><span class="dot"></span> 100% GRATIS • FREE RSVP TIKET</span>
+          <h1 class="hero-heading">
+            Daftar Event & <br>
+            <span class="highlight-gold">Workshop Koding Gratis</span>
+          </h1>
+          <p class="hero-lead">
+            Tingkatkan wawasan software engineering lewat webinar teknologi bulanan, bedah arsitektur backend perbankan, konsultasi roadmap karier, dan bedah portofolio CV langsung bersama instruktur ahli.
+          </p>
+
+          <div class="specs-chips">
+            <div class="spec-chip"><span>🎟️</span> Tiket 100% Gratis</div>
+            <div class="spec-chip"><span>📜</span> Free E-Sertifikat</div>
+            <div class="spec-chip"><span>💻</span> Live Zoom & Demo Koding</div>
+            <div class="spec-chip"><span>📁</span> Free Source Code GitHub</div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20klaim%20tiket%20RSVP%20Webinar%20Gratis" target="_blank" class="btn-gold">
+              <span>Klaim Tiket Gratis via WhatsApp</span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="#jadwal" class="btn-outline">
+              <span>Lihat Jadwal Webinar</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Ticket Pass Mockup -->
+        <div class="ticket-card">
+          <span class="ticket-tag">EVENT TERDEKAT • FREE PASS</span>
+          <h3 class="ticket-title">Bedah Arsitektur Backend Skala Perbankan dengan Laravel & Redis</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Bagaimana bank nasional menangani jutaan transaksi tanpa database down atau lemot.
+          </p>
+
+          <div class="ticket-meta">
+            <div><strong>Pembicara:</strong> Rahmat Ramadhan Putra (Senior Software Engineer)</div>
+            <div><strong>Hari & Tanggal:</strong> Sabtu, 20.00 – 21.30 WIB</div>
+            <div><strong>Media:</strong> Live Zoom & YouTube Stream</div>
+            <div><strong>Investasi:</strong> <span style="color: #059669; font-weight: 800;">GRATIS (Rp0)</span></div>
+          </div>
+
+          <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Webinar%20Bedah%20Arsitektur%20Backend" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+            Amankan Tiket Zoom Saya
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule of Upcoming Events -->
+  <section class="container" id="jadwal" style="padding: 4rem 0;">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+      <span class="section-tag"><span class="dot"></span> AGENDA MENDATANG</span>
+      <h2 class="section-title">Jadwal Sesi Webinar & Workshop</h2>
+      <p class="section-subtitle">Pilih topik yang paling ingin kamu pelajari dan daftarkan dirimu segera.</p>
+    </div>
+
+    <div class="events-grid">
+      <!-- Event 1 -->
+      <div class="event-card">
+        <div>
+          <span class="event-date-badge">SABTU MINGGU INI • 20.00 WIB</span>
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">
+            Bedah Arsitektur Backend Skala Perbankan
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Mempelajari clean architecture, asynchronous queue, caching Redis, dan proteksi transaksi finansial.
+          </p>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Daftar%20Webinar%20Backend%20Perbankan" target="_blank" class="btn-gold" style="width: 100%; justify-content: center; font-size: 0.78rem;">
+          Daftar RSVP Gratis
+        </a>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card">
+        <div>
+          <span class="event-date-badge" style="background: #ECFDF5; color: #065F46;">PEKAN DEPAN • 19.30 WIB</span>
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">
+            Roadmap Jadi Web Developer Siap Kerja 2026
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Cara menyusun portofolio GitHub, lolos live coding tes teknis, dan tips negosiasi gaji programmer.
+          </p>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Daftar%20Webinar%20Roadmap%20Karier%20Web" target="_blank" class="btn-gold" style="width: 100%; justify-content: center; font-size: 0.78rem;">
+          Daftar RSVP Gratis
+        </a>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <div>
+          <span class="event-date-badge" style="background: #EFF6FF; color: #1E40AF;">AKHIR BULAN • 19.30 WIB</span>
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">
+            Workshop 1 Hari: Deploy Laravel ke VPS Cloud
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Panduan lengkap setup server Ubuntu, konfigurasi Nginx, domain SSL, dan migrasi database live.
+          </p>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Daftar%20Workshop%20Deploy%20Cloud" target="_blank" class="btn-gold" style="width: 100%; justify-content: center; font-size: 0.78rem;">
+          Daftar RSVP Gratis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="container" id="benefit" style="padding: 4rem 0;">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+      <span class="section-tag"><span class="dot"></span> BENEFIT PESERTA</span>
+      <h2 class="section-title">Apa yang Didapatkan Peserta?</h2>
+      <p class="section-subtitle">Meskipun gratis, seluruh fasilitas materi disusun secara profesional.</p>
+    </div>
+
+    <div class="bento-grid-3">
+      <div class="bento-card">
+        <div class="bento-icon">📜</div>
+        <h3>E-Sertifikat Resmi</h3>
+        <p>Setiap peserta yang mengisi presensi berhak mengunduh sertifikat digital terverifikasi.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">📁</div>
+        <h3>Materi PDF & Source Code</h3>
+        <p>Akses slide presentasi dan link repositori GitHub contoh kode kodingan praktikum.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">🔍</div>
+        <h3>Bedah Portofolio & CV</h3>
+        <p>Kirimkan link GitHub atau CV kamu untuk kami ulas langsung di akhir sesi webinar.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">🎟️</div>
+        <h3>Voucher Beasiswa Kelas</h3>
+        <p>Peserta event berkesempatan memenangkan voucher potongan biaya kelas reguler Smart Koding.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">🎙️</div>
+        <h3>Sesi Q&A Terbuka</h3>
+        <p>Tanyakan apa saja seputar tips belajar, teknologi framework terbaru, maupun dunia kerja tech.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">🤝</div>
+        <h3>Networking Komunitas</h3>
+        <p>Terhubung dengan sesama pegiat koding, mahasiswa IT, dan rekan developer dari berbagai daerah.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="logo-badge">SK</div>
+            <div>
+              <div class="brand-title">Smart Koding</div>
+              <div class="brand-sub">Academy • Pasuruan</div>
+            </div>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+            Event edukasi dan workshop koding berkala untuk kemajuan talenta teknologi Indonesia.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Program Kelas</h5>
+          <ul>
+            <li><a href="program-web-lanjut.html">Web Tingkat Lanjut (Laravel)</a></li>
+            <li><a href="program-offline-lab.html">Kelas Offline Lab Pasuruan</a></li>
+            <li><a href="program-online-bootcamp.html">Online Live Bootcamp</a></li>
+            <li><a href="program-workshop-event.html">Event & Workshop Gratis</a></li>
+            <li><a href="kelas.html">Katalog Semua Kelas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Kontak RSVP</h5>
+          <ul>
+            <li><a href="https://wa.me/6281234567890" target="_blank">WhatsApp: 0812-3456-7890</a></li>
+            <li><span style="font-size: 0.8rem; color: var(--text-muted);">RSVP Bebas Biaya</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Lokasi Penyelenggara</h5>
+          <ul>
+            <li><span style="font-size: 0.8rem; color: var(--text-body);">Kota Pasuruan, Jawa Timur</span></li>
+            <li><span style="font-size: 0.8rem; color: var(--text-muted);">Online via Zoom / Meet</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Smart Koding Academy. Seluruh hak cipta dilindungi.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--amber-700);">Free Developer Workshops • Pasuruan</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

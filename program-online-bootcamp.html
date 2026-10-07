@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelas Online Live Bootcamp — Smart Koding Academy</title>
+  <meta name="description" content="Bootcamp online pemrograman web & Laravel dengan kurikulum video terstruktur, sesi live review mingguan bareng mentor perbankan, dan akses komunitas Discord VIP 24/7.">
+  <meta name="keywords" content="online bootcamp web, kursus laravel online, belajar koding online, live mentoring koding, discord developer indonesia">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kelas Online Live Bootcamp — Smart Koding Academy">
+  <meta property="og:description" content="Belajar koding mandiri & live mentoring akhir pekan bersama Senior Software Engineer perbankan nasional. Akses Discord VIP 24/7 dan rekaman selamanya.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --yellow-primary: #FFC400;
+      --yellow-bright: #FFD600;
+      --yellow-light: #FFF9DB;
+      --yellow-tint: #FEFCE8;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --amber-700: #B45309;
+
+      --bg-canvas: #FCFBF7;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #FFFDF5;
+      --bg-elevated: #F9F7F1;
+      
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --text-faint: #94A3B8;
+
+      --border-light: rgba(226, 232, 240, 0.9);
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 16px 36px -6px rgba(15, 23, 42, 0.08);
+      --shadow-glow: 0 8px 30px rgba(255, 196, 0, 0.32);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-canvas);
+      color: var(--text-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 4.5rem; /* Reserve space for mobile sticky bar */
+    }
+
+    @media (min-width: 769px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    .bg-mesh-sunny {
+      background-image:
+        radial-gradient(at 10% 10%, rgba(255, 196, 0, 0.16) 0px, transparent 45%),
+        radial-gradient(at 90% 12%, rgba(245, 158, 11, 0.14) 0px, transparent 48%),
+        radial-gradient(at 50% 45%, rgba(255, 252, 232, 0.85) 0px, transparent 65%),
+        radial-gradient(at 85% 85%, rgba(255, 196, 0, 0.12) 0px, transparent 50%),
+        radial-gradient(at 15% 90%, rgba(245, 158, 11, 0.1) 0px, transparent 55%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Buttons */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #FFCD00, #F59E0B);
+      color: #0F172A;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-gold:hover, .btn-gold:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.45);
+      background: linear-gradient(135deg, #FFD600, #D97706);
+      outline: none;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #FFFFFF;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-light);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-outline:hover, .btn-outline:focus-visible {
+      border-color: var(--amber-500);
+      background: var(--yellow-tint);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* Section Headings */
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--yellow-light);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber-700);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.75rem;
+    }
+    .section-tag .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--amber-600);
+      border-radius: 50%;
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw + 0.5rem, 2.2rem);
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: clamp(0.85rem, 1.2vw + 0.3rem, 0.96rem);
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Site Header */
+    .site-header {
+      background: rgba(252, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.6rem;
+      gap: 1rem;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .logo-badge {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #FFD600, #F59E0B);
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      color: var(--amber-700);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.75rem;
+    }
+    .nav-menu a {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-body);
+      transition: color 0.2s;
+    }
+    .nav-menu a:hover, .nav-menu a:focus-visible {
+      color: var(--amber-600);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--amber-600);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+    .dropdown-panel {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 320px;
+      padding: 0.75rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      z-index: 101;
+    }
+    .dropdown:hover .dropdown-panel,
+    .dropdown:focus-within .dropdown-panel {
+      display: flex;
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-md);
+      transition: background 0.2s;
+    }
+    .dropdown-item:hover, .dropdown-item:focus-visible {
+      background: var(--yellow-light);
+    }
+    .dropdown-item.active {
+      background: var(--yellow-tint);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .dropdown-icon {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: var(--radius-sm);
+      background: var(--yellow-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .dropdown-item h5 {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .dropdown-item p {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-top: 0.15rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: var(--radius-sm);
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu-btn:focus-visible {
+      outline: 2px solid var(--amber-500);
+    }
+
+    /* Breadcrumb Semantic Navigation */
+    .breadcrumb-bar {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      list-style: none;
+    }
+    .breadcrumb-list a {
+      color: var(--text-body);
+      transition: color 0.2s;
+    }
+    .breadcrumb-list a:hover {
+      color: var(--amber-600);
+    }
+    .breadcrumb-sep {
+      color: #CBD5E1;
+      user-select: none;
+    }
+    .breadcrumb-active {
+      color: var(--amber-700);
+      font-weight: 700;
+    }
+
+    /* Hero Section */
+    .bootcamp-hero {
+      padding: 3.5rem 0 4.5rem;
+    }
+    .bootcamp-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-heading {
+      font-size: clamp(2rem, 4.5vw + 0.4rem, 2.85rem);
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin: 0.5rem 0 1.25rem;
+    }
+    .highlight-gold {
+      background: linear-gradient(135deg, #D97706, #FFB703);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      font-size: clamp(0.95rem, 1.2vw + 0.2rem, 1.05rem);
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Chips */
+    .specs-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      list-style: none;
+    }
+    .spec-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Right LMS & Discord Preview (Semantic Aside/Figure) */
+    .lms-preview-box {
+      background: #1E1F29;
+      border-radius: var(--radius-xl);
+      border: 2px solid rgba(255, 196, 0, 0.4);
+      padding: 1.5rem;
+      color: #FFFFFF;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+    }
+    .lms-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .discord-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #5865F2;
+      color: #FFFFFF;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+    .chat-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      list-style: none;
+    }
+    .chat-msg {
+      background: #2B2D3A;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .chat-author {
+      font-weight: 800;
+      color: #FFD600;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+    }
+    .chat-msg code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #67E8F9;
+    }
+
+    .lms-status-footer {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: #FFD600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Bento Features (Articles) */
+    .bento-section {
+      padding: 4.5rem 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .bento-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .bento-card {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .bento-card:hover {
+      border-color: var(--amber-500);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      background: #FFFFFF;
+    }
+    .bento-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: var(--radius-md);
+      background: var(--yellow-light);
+      color: var(--amber-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+    .bento-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    .bento-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Pricing Section (Articles) */
+    .pricing-section {
+      padding: 5rem 0;
+    }
+    .pricing-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+    }
+    .price-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .price-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .price-card.featured {
+      border: 2px solid var(--yellow-primary);
+      box-shadow: 0 16px 40px rgba(255, 196, 0, 0.18);
+    }
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: linear-gradient(135deg, #FFC400, #F59E0B);
+      color: #0F172A;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 900;
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .price-amount {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin: 1rem 0 0.5rem;
+      line-height: 1;
+    }
+    .price-period {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .price-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.55;
+    }
+    .price-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+    .price-check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-body);
+    }
+    .price-check-item svg {
+      color: #10B981;
+      flex-shrink: 0;
+    }
+
+    /* FAQ Details/Summary Semantic Accordion */
+    .faq-section {
+      padding: 4.5rem 0;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border-light);
+    }
+    .faq-list {
+      max-width: 820px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .faq-details {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-details[open] {
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .faq-summary {
+      padding: 1.15rem 1.4rem;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      user-select: none;
+    }
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-summary svg {
+      transition: transform 0.2s ease;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .faq-details[open] .faq-summary svg {
+      transform: rotate(180deg);
+      color: var(--amber-600);
+    }
+    .faq-content {
+      padding: 0 1.4rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Site Footer */
+    .site-footer {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-col h5 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-col a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--amber-600);
+    }
+    .footer-col address {
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .mobile-drawer.open {
+      display: flex;
+      opacity: 1;
+    }
+    .drawer-body {
+      background: #FFFFFF;
+      width: min(320px, 85vw);
+      height: 100%;
+      padding: 1.75rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      overflow-y: auto;
+    }
+    .mobile-drawer.open .drawer-body {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--text-main);
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+    }
+    .drawer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .drawer-nav-list a {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      display: block;
+    }
+    .drawer-nav-list a:hover {
+      color: var(--amber-600);
+    }
+
+    /* Sticky Bottom Action Bar for Mobile */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border-light);
+      padding: 0.75rem 1rem;
+      z-index: 95;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .mobile-sticky-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .mobile-sticky-price {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .mobile-sticky-price strong {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--amber-600);
+      line-height: 1.1;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 960px) {
+      .nav-desktop {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .bootcamp-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .bento-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pricing-two-col {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-sticky-bar {
+        display: block;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-cta-group .btn-gold,
+      .hero-cta-group .btn-outline {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .bento-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .chat-author {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body class="bg-mesh-sunny">
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION (SEMANTIC HEADER & NAV)
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Smart Koding Academy Pasuruan — Kembali ke Beranda">
+        <div class="logo-badge" aria-hidden="true">SK</div>
+        <div>
+          <div class="brand-title">Smart Koding</div>
+          <div class="brand-sub">Academy • Pasuruan</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-desktop" aria-label="Navigasi Utama">
+        <ul class="nav-menu">
+          <li><a href="index.html">Beranda</a></li>
+          <li class="dropdown">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="Menu Program Kelas">
+              <span>Program Kelas</span>
+              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dropdown-panel" role="menu">
+              <a href="program-web-lanjut.html" class="dropdown-item" role="menuitem">
+                <div class="dropdown-icon" aria-hidden="true">&lt;/&gt;</div>
+                <div>
+                  <h5>Web Tingkat Lanjut</h5>
+                  <p>PHP Laravel 11, REST API &amp; MySQL. Rp50rb/bln atau Rp300rb/smt.</p>
+                </div>
+              </a>
+              <a href="program-offline-lab.html" class="dropdown-item" role="menuitem">
+                <div class="dropdown-icon" aria-hidden="true">🖥️</div>
+                <div>
+                  <h5>Kelas Offline Lab Pasuruan</h5>
+                  <p>Tatap muka praktikum komputer spek tinggi. Maks 10 siswa.</p>
+                </div>
+              </a>
+              <a href="program-online-bootcamp.html" class="dropdown-item active" role="menuitem" aria-current="page">
+                <div class="dropdown-icon" aria-hidden="true">🌐</div>
+                <div>
+                  <h5>Online Live Bootcamp</h5>
+                  <p>Kurikulum video, sesi review mingguan &amp; Discord VIP.</p>
+                </div>
+              </a>
+              <a href="program-workshop-event.html" class="dropdown-item" role="menuitem">
+                <div class="dropdown-icon" aria-hidden="true">🎟️</div>
+                <div>
+                  <h5>Event &amp; Workshop Gratis</h5>
+                  <p>Webinar arsitektur backend &amp; bedah portofolio kerja.</p>
+                </div>
+              </a>
+              <div style="border-top: 1px dashed var(--border-light); margin-top: 0.35rem; padding-top: 0.5rem; text-align: center;">
+                <a href="kelas.html" style="font-size: 0.72rem; font-weight: 800; color: var(--amber-600); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <span>Lihat Semua Katalog Program</span>
+                  <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#fitur">Fitur Bootcamp</a></li>
+          <li><a href="#biaya">Biaya</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20tertarik%20daftar%20Online%20Live%20Bootcamp" target="_blank" rel="noopener noreferrer" class="btn-gold">
+          <span>Gabung Bootcamp</span>
+          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileDrawer()" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileDrawer">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu (Accessible & Responsive) -->
+  <aside class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Menu Navigasi Mobile" onclick="toggleMobileDrawer()">
+    <div class="drawer-body" onclick="event.stopPropagation()">
+      <div class="drawer-header">
+        <div class="brand-title">Smart Koding</div>
+        <button class="drawer-close-btn" onclick="toggleMobileDrawer()" aria-label="Tutup Menu">&times;</button>
+      </div>
+      <nav aria-label="Navigasi Menu Mobile">
+        <ul class="drawer-nav-list">
+          <li><a href="index.html">← Kembali ke Beranda</a></li>
+          <li><a href="kelas.html">📋 Katalog Lengkap Kelas</a></li>
+          <li><a href="program-web-lanjut.html">↳ Web Tingkat Lanjut</a></li>
+          <li><a href="program-offline-lab.html">↳ Kelas Offline Lab Pasuruan</a></li>
+          <li><a href="program-online-bootcamp.html" style="color: var(--amber-600);">✓ Online Live Bootcamp</a></li>
+          <li><a href="program-workshop-event.html">↳ Event &amp; Workshop Gratis</a></li>
+          <li><a href="#fitur" onclick="toggleMobileDrawer()">Fitur Bootcamp</a></li>
+          <li><a href="#biaya" onclick="toggleMobileDrawer()">Biaya &amp; Paket</a></li>
+          <li><a href="#faq" onclick="toggleMobileDrawer()">FAQ</a></li>
+        </ul>
+      </nav>
+      <div style="margin-top: auto; padding-top: 1rem;">
+        <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Online%20Live%20Bootcamp" target="_blank" rel="noopener noreferrer" class="btn-gold" style="width: 100%;">
+          Daftar via WhatsApp
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       BREADCRUMB BAR (SEMANTIC SCHEMA BREADCRUMB)
+       ========================================================================== -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li>
+          <a href="index.html">Beranda</a>
+        </li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li>
+          <a href="kelas.html">Program Kelas</a>
+        </li>
+        <li class="breadcrumb-sep" aria-hidden="true">/</li>
+        <li class="breadcrumb-active" aria-current="page">Online Live Bootcamp</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       MAIN CONTENT (SEMANTIC MAIN)
+       ========================================================================== -->
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="bootcamp-hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="bootcamp-hero-grid">
+          <div>
+            <span class="section-tag"><span class="dot" aria-hidden="true"></span> FLEKSIBEL DARI MANA SAJA • SELURUH INDONESIA</span>
+            <h1 id="hero-title" class="hero-heading">
+              Kelas Online <br>
+              <span class="highlight-gold">Live Bootcamp Interaktif</span>
+            </h1>
+            <p class="hero-lead">
+              Belajar koding mandiri sesuai ritme harianmu tanpa terikat jarak. Dapatkan kurikulum video terstruktur, sesi live review Google Meet mingguan bersama mentor perbankan, dan komunitas Discord VIP 24/7.
+            </p>
+
+            <ul class="specs-chips" role="list" aria-label="Keunggulan Utama Bootcamp">
+              <li class="spec-chip"><span aria-hidden="true">🌐</span> 100% Online Fleksibel</li>
+              <li class="spec-chip"><span aria-hidden="true">📹</span> Akses Video Selamanya</li>
+              <li class="spec-chip"><span aria-hidden="true">💬</span> Discord VIP 24/7</li>
+              <li class="spec-chip"><span aria-hidden="true">🔴</span> Live Review Mingguan</li>
+            </ul>
+
+            <div class="hero-cta-group">
+              <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Online%20Live%20Bootcamp" target="_blank" rel="noopener noreferrer" class="btn-gold">
+                <span>Mulai Belajar Sekarang</span>
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+              <a href="#fitur" class="btn-outline">
+                <span>Lihat Fasilitas Belajar</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right LMS & Discord Preview (Semantic Aside with structured chat) -->
+          <aside class="lms-preview-box" aria-label="Pratinjau Komunitas Belajar Discord VIP">
+            <header class="lms-top-bar">
+              <div>
+                <h3 style="font-weight: 800; font-size: 0.95rem; margin: 0;">Smart Koding VIP Community</h3>
+                <span style="font-size: 0.65rem; color: #94A3B8; font-family: var(--font-mono);">#forum-bimbingan-laravel</span>
+              </div>
+              <span class="discord-badge" aria-label="Status Discord: VIP">Discord VIP</span>
+            </header>
+
+            <ol class="chat-preview" role="list" aria-label="Diskusi Tanya Jawab Siswa dan Mentor">
+              <li class="chat-msg">
+                <div class="chat-author">
+                  <span>👨‍💻 Dimas (Siswa Online)</span>
+                  <time datetime="18:12" style="font-size: 0.65rem; color: #94A3B8; font-weight: normal;">18:12</time>
+                </div>
+                <p style="color: #CBD5E1; margin: 0;">
+                  "Mas Rahmat, relasi Many-to-Many di Laravel 11 saya coba tambah kolom pivot status kok error null ya?"
+                </p>
+              </li>
+
+              <li class="chat-msg" style="border-left: 3px solid #10B981; background: rgba(16, 185, 129, 0.1);">
+                <div class="chat-author" style="color: #34D399;">
+                  <span>⭐ Rahmat Ramadhan (Mentor)</span>
+                  <time datetime="18:15" style="font-size: 0.65rem; color: #94A3B8; font-weight: normal;">18:15</time>
+                </div>
+                <p style="color: #E2E8F0; margin: 0;">
+                  "Cek definisinya di Model: tambahkan <code>-&gt;withPivot('status')</code> di method <code>belongsToMany()</code> ya Dimas. Nanti malam kita bedah di sesi Live Zoom!"
+                </p>
+              </li>
+            </ol>
+
+            <footer class="lms-status-footer">
+              <span>🔴 Sesi Live Berikutnya: Sabtu, 19.30 WIB</span>
+              <span style="color: #34D399;">Google Meet Live</span>
+            </footer>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Features Section (Semantic Articles) -->
+    <section class="bento-section" id="fitur" aria-labelledby="fitur-title">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag"><span class="dot" aria-hidden="true"></span> METODE BELAJAR</span>
+          <h2 id="fitur-title" class="section-title">Semua yang Kamu Butuhkan untuk Mahir Koding</h2>
+          <p class="section-subtitle">
+            Kombinasi belajar mandiri dengan bimbingan langsung, memastikan kamu tidak pernah merasa kebingungan sendirian.
+          </p>
+        </header>
+
+        <div class="bento-grid-3">
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">📹</div>
+            <h3>100+ Video Materi Praktikum</h3>
+            <p>Penjelasan detail dengan kualitas audio jernih dan resolusi tinggi. Dilengkapi source code di tiap akhir video.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">🎙️</div>
+            <h3>Live Review Mingguan</h3>
+            <p>Setiap akhir pekan kita berkumpul di Google Meet untuk membedah tugas, studi kasus nyata, dan tanya jawab live.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">💬</div>
+            <h3>Ruang Diskusi Discord 24/7</h3>
+            <p>Punya kendala koding di malam hari? Tanyakan di channel Discord VIP, mentor dan komunitas siap membantu.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">📦</div>
+            <h3>Akses Repositori GitHub</h3>
+            <p>Bisa clone dan pelajari langsung template project standar industri yang siap kamu kembangkan untuk portofolio.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">♾️</div>
+            <h3>Rekaman Akses Selamanya</h3>
+            <p>Tidak ada batasan waktu sebulan atau setahun. Sekali bergabung, rekaman materi bisa kamu akses kapan pun kamu butuh.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-icon" aria-hidden="true">🎓</div>
+            <h3>Sertifikat Kompetensi Resmi</h3>
+            <p>Setelah menuntaskan tugas akhir project web, kamu berhak mendapatkan e-sertifikat terverifikasi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section (Semantic Pricing Articles) -->
+    <section class="pricing-section" id="biaya" aria-labelledby="biaya-title">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag"><span class="dot" aria-hidden="true"></span> BIAYA BOOTCAMP</span>
+          <h2 id="biaya-title" class="section-title">Investasi Belajar Online Paling Terjangkau</h2>
+          <p class="section-subtitle">Mulai bangun karier software engineer impianmu dari rumah tanpa beban biaya mahal.</p>
+        </header>
+
+        <div class="pricing-two-col">
+          <!-- Paket Bulanan -->
+          <article class="price-card">
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Paket Bulanan Online</h3>
+              <div class="price-amount" aria-label="Biaya Rp50.000 per bulan">
+                Rp50.000 <span class="price-period">/ bulan</span>
+              </div>
+              <p class="price-desc">
+                Akses modul video berjalan, Discord VIP, dan sesi live review selama 1 bulan penuh.
+              </p>
+              <ul class="price-checklist" role="list">
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Akses video materi bulan berjalan</span>
+                </li>
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Akses channel Discord VIP &amp; Q&amp;A</span>
+                </li>
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Ikut live review mingguan via Meet</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Paket%20Bulanan%20Online%20Bootcamp%20Rp50.000" target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%;">
+              Daftar Bulanan
+            </a>
+          </article>
+
+          <!-- Paket Semester (Featured) -->
+          <article class="price-card featured">
+            <span class="popular-tag">PAKET REKOMENDASI (HEMAT)</span>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Paket Semester Bootcamp (6 Bulan)</h3>
+              <div class="price-amount" aria-label="Biaya Rp300.000 per semester">
+                Rp300.000 <span class="price-period">/ semester (Rp50rb/bln)</span>
+              </div>
+              <p class="price-desc">
+                Akses seluruh materi kurikulum lengkap, pendampingan Capstone Project, review CV, dan e-sertifikat resmi.
+              </p>
+              <ul class="price-checklist" role="list">
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Akses seluruh modul 100+ video selamanya</span>
+                </li>
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Discord VIP Lifetime + review kode 1-on-1</span>
+                </li>
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Bimbingan Capstone Project Kasir POS &amp; API</span>
+                </li>
+                <li class="price-check-item">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>E-Sertifikat Kelulusan resmi industri</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Paket%20Semester%20Online%20Bootcamp%20Rp300.000" target="_blank" rel="noopener noreferrer" class="btn-gold" style="width: 100%;">
+              Daftar Bootcamp Lengkap
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section (Semantic HTML5 Details/Summary) -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag"><span class="dot" aria-hidden="true"></span> TANYA JAWAB</span>
+          <h2 id="faq-title" class="section-title">Pertanyaan Seputar Bootcamp Online</h2>
+          <p class="section-subtitle">Jawaban atas pertanyaan yang paling sering diajukan peserta online.</p>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-details" open>
+            <summary class="faq-summary">
+              <span>Bagaimana mekanisme belajar online di bootcamp ini?</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              Kamu bisa menonton modul video praktikum kapan saja secara fleksibel sesuai waktumu. Setiap modul dilengkapi source code dan tugas praktikum. Di akhir pekan, ada sesi live streaming Google Meet bersama mentor untuk bedah kode dan tanya jawab langsung.
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <span>Apakah saya bisa bertanya jika mengalami error koding di luar jam live?</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              Tentu saja! Komunitas Discord VIP aktif 24 jam. Kamu cukup screenshot error atau paste snippet kodemu di channel khusus bantuan error, mentor dan rekan sekelas akan membantu membimbing sampai error teratasi.
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <span>Apakah rekaman video memiliki batas waktu kedaluwarsa?</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              Tidak ada masa kedaluwarsa. Sekali terdaftar di paket semester, akses rekaman materi video dan materi pembaruan tetap bisa kamu akses selamanya (*lifetime access*).
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <span>Apakah ada sertifikat resmi setelah lulus?</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              Ya, siswa yang menuntaskan penugasan proyek capstone akan mendapatkan E-Sertifikat resmi kompetensi pemrograman web dari Smart Koding Academy yang dilengkapi tautan verifikasi digital untuk portofolio dan profil LinkedIn.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       STICKY BOTTOM MOBILE ACTION BAR (FOR HIGH MOBILE CONVERSION)
+       ========================================================================== -->
+  <aside class="mobile-sticky-bar" aria-label="Aksi Cepat Pendaftaran Mobile">
+    <div class="mobile-sticky-inner">
+      <div class="mobile-sticky-price">
+        <span>Biaya Mulai Dari:</span>
+        <strong>Rp50.000 <span style="font-size: 0.7rem; font-weight: normal; color: var(--text-muted);">/ bln</span></strong>
+      </div>
+      <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20tertarik%20daftar%20Online%20Live%20Bootcamp" target="_blank" rel="noopener noreferrer" class="btn-gold" style="padding: 0.65rem 1.15rem; font-size: 0.8rem;">
+        <span>Daftar Sekarang</span>
+        <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       FOOTER (SEMANTIC FOOTER)
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="logo-badge" aria-hidden="true">SK</div>
+            <div>
+              <div class="brand-title">Smart Koding</div>
+              <div class="brand-sub">Academy • Pasuruan</div>
+            </div>
+          </a>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+            Program pembelajaran web development online interaktif bersama software engineer perbankan nasional. Belajar dari dasar sampai siap kerja.
+          </p>
+        </div>
+
+        <nav class="footer-col" aria-label="Program Kelas Footer">
+          <h5>Program Kelas</h5>
+          <ul>
+            <li><a href="program-web-lanjut.html">Web Tingkat Lanjut (Laravel)</a></li>
+            <li><a href="program-offline-lab.html">Kelas Offline Lab Pasuruan</a></li>
+            <li><a href="program-online-bootcamp.html">Online Live Bootcamp</a></li>
+            <li><a href="program-workshop-event.html">Event &amp; Workshop Gratis</a></li>
+            <li><a href="kelas.html">Katalog Semua Kelas</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h5>Kontak WhatsApp</h5>
+          <address>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">Admin: 0812-3456-7890</a>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Layanan Tanya Jawab 24 Jam</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Kota Pasuruan, Jawa Timur</span>
+          </address>
+        </div>
+
+        <nav class="footer-col" aria-label="Fasilitas Online Footer">
+          <h5>Fasilitas Online</h5>
+          <ul>
+            <li><span style="font-size: 0.8rem; color: var(--text-body);">Discord VIP Community 24/7</span></li>
+            <li><span style="font-size: 0.8rem; color: var(--text-body);">Google Meet / Zoom Live Review</span></li>
+            <li><span style="font-size: 0.8rem; color: var(--text-body);">GitHub Private Repository</span></li>
+            <li><span style="font-size: 0.8rem; color: var(--text-body);">LMS Video On-Demand</span></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Smart Koding Academy. Seluruh hak cipta dilindungi.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--amber-700);">Online Learning • High Quality Mentoring</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById('mobileDrawer');
+      const btn = document.querySelector('.mobile-menu-btn');
+      const isOpen = drawer.classList.contains('open');
+      
+      if (isOpen) {
+        drawer.classList.remove('open');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      } else {
+        drawer.classList.add('open');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    // Close drawer on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('mobileDrawer');
+        if (drawer && drawer.classList.contains('open')) {
+          toggleMobileDrawer();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

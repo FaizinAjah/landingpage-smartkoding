@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Program Kelas Lengkap — Smart Koding Academy Pasuruan</title>
+  <meta name="description" content="Katalog lengkap program kelas pemrograman web, PHP Laravel, offline lab komputer Kota Pasuruan, dan online bootcamp di Smart Koding Academy.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --yellow-primary: #FFC400;
+      --yellow-bright: #FFD600;
+      --yellow-light: #FFF9DB;
+      --yellow-tint: #FEFCE8;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --amber-700: #B45309;
+
+      --bg-canvas: #FCFBF7;
+      --bg-card: #FFFFFF;
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --border-light: rgba(226, 232, 240, 0.9);
+
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-canvas);
+      color: var(--text-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Top Nav */
+    .header-nav {
+      background: rgba(252, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-badge {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #FFD600, #F59E0B);
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #FFCD00, #F59E0B);
+      color: #0F172A;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 0.65rem 1.35rem;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(255, 196, 0, 0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 196, 0, 0.4);
+    }
+
+    .btn-back {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--amber-700);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-back:hover {
+      text-decoration: underline;
+    }
+
+    /* Page Hero */
+    .catalog-hero {
+      padding: 3.5rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.85rem;
+      background: var(--yellow-light);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--amber-700);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0.65rem auto 0;
+    }
+
+    /* Filter Bar */
+    .catalog-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2.25rem 0 3rem;
+    }
+
+    .f-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-light);
+      background: #FFFFFF;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .f-btn.active, .f-btn:hover {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+    }
+
+    /* Catalog Cards Grid */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-bottom: 5rem;
+    }
+
+    @media (max-width: 992px) {
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .catalog-grid { grid-template-columns: 1fr; }
+    }
+
+    .class-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .class-card:hover {
+      border-color: var(--yellow-primary);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: var(--radius-md);
+      background: var(--yellow-light);
+      color: var(--amber-700);
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge-status {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      background: #ECFDF5;
+      color: #059669;
+    }
+
+    .class-card h3 {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 0.45rem;
+    }
+
+    .class-card p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .syllabus-bullets {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .syllabus-bullets li {
+      font-size: 0.75rem;
+      color: var(--text-body);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .syllabus-bullets li::before {
+      content: '✓';
+      color: #10B981;
+      font-weight: 900;
+    }
+
+    .price-box {
+      padding: 0.95rem 1.15rem;
+      background: var(--yellow-tint);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      margin-bottom: 1.25rem;
+    }
+
+    .price-box .price-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 800;
+      color: var(--amber-700);
+      text-transform: uppercase;
+    }
+
+    .price-box .price-num {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--amber-600);
+      margin-top: 0.15rem;
+    }
+
+    .price-box .price-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .class-title-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    .class-title-link:hover h3 {
+      color: var(--amber-600);
+      transition: color 0.15s ease;
+    }
+
+    .card-action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .btn-detail-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-main);
+      background: var(--yellow-light);
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-detail-link:hover {
+      background: var(--yellow-primary);
+      color: #0F172A;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="logo-badge">&lt;/&gt;</div>
+          <div>
+            <div style="font-weight: 900; font-size: 1.15rem; color: #0F172A;">Smart<span style="color: #D97706;">Koding</span></div>
+            <div style="font-family: var(--font-mono); font-size: 0.55rem; color: #64748B; text-transform: uppercase;">Academy Pasuruan</div>
+          </div>
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <a href="index.html" class="btn-back">
+            <span>← Kembali ke Beranda Utama</span>
+          </a>
+          <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20ingin%20konsultasi%20katalog%20kelas" target="_blank" class="btn-gold">
+            Konsultasi WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="catalog-hero">
+    <div class="container">
+      <div class="tag-badge">KATALOG LENGKAP 2026</div>
+      <h1 class="hero-title">Pilih Kelas yang Sesuai dengan Target Kariermu</h1>
+      <p class="hero-sub">
+        Mulai dari pemrograman web dasar, arsitektur Laravel industri, bimbingan praktikum tatap muka di Lab Pasuruan, hingga bootcamp online intensif.
+      </p>
+
+      <!-- Category Filter -->
+      <div class="catalog-filter">
+        <button class="f-btn active" onclick="filterClass('all', this)">Semua Program</button>
+        <button class="f-btn" onclick="filterClass('web', this)">Web & Laravel</button>
+        <button class="f-btn" onclick="filterClass('lab', this)">Offline Lab Pasuruan</button>
+        <button class="f-btn" onclick="filterClass('online', this)">Online Bootcamp</button>
+        <button class="f-btn" onclick="filterClass('event', this)">Workshop & Event</button>
+      </div>
+
+      <!-- Classes Grid -->
+      <div class="catalog-grid">
+        <!-- Class 1 -->
+        <div class="class-card" data-cat="web lab">
+          <div>
+            <div class="card-top">
+              <div class="card-icon">&lt;/&gt;</div>
+              <span class="badge-status">Batch Baru Buka</span>
+            </div>
+            <a href="program-web-lanjut.html" class="class-title-link">
+              <h3>Pemrograman Web Tingkat Lanjut</h3>
+            </a>
+            <p>Mempelajari PHP 8 modern, arsitektur framework Laravel 11, routing, controller, Eloquent ORM, dan integrasi MySQL database.</p>
+            <ul class="syllabus-bullets">
+              <li>Logika pemrograman & algoritma MVC</li>
+              <li>Sistem autentikasi & hak akses multi-user</li>
+              <li>RESTful API & Payment Gateway QRIS</li>
+              <li>Studi kasus aplikasi kasir POS dan E-Commerce</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-box">
+              <div class="price-lbl">BIAYA INVESTASI</div>
+              <div class="price-num">Rp300.000 <span style="font-size: 0.7rem; font-weight: 500; color: #64748B;">/ semester</span></div>
+              <div class="price-sub">atau pilihan bulanan: <strong>Rp50.000 / bulan</strong></div>
+            </div>
+            <div class="card-action-row">
+              <a href="program-web-lanjut.html" class="btn-detail-link">
+                <span>Lihat Detail →</span>
+              </a>
+              <a href="https://wa.me/6281234567890?text=Daftar%20Kelas%20Pemrograman%20Web%20Lanjut" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+                Daftar Kelas
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Class 2 -->
+        <div class="class-card" data-cat="lab">
+          <div>
+            <div class="card-top">
+              <div class="card-icon">🖥️</div>
+              <span class="badge-status" style="background: #FEF3C7; color: #B45309;">Sisa 3 Kursi</span>
+            </div>
+            <a href="program-offline-lab.html" class="class-title-link">
+              <h3>Kelas Offline Lab Komputer Pasuruan</h3>
+            </a>
+            <p>Bimbingan tatap muka langsung di laboratorium komputer Kota Pasuruan. Maksimal 10 siswa per sesi agar pembelajaran sangat intensif.</p>
+            <ul class="syllabus-bullets">
+              <li>PC spek tinggi siap koding disediakan</li>
+              <li>Debugging error langsung di depan instruktur</li>
+              <li>Diskusi kelompok & problem solving nyata</li>
+              <li>Jadwal fleksibel (Sore & Malam)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-box">
+              <div class="price-lbl">BIAYA INVESTASI</div>
+              <div class="price-num">Rp50.000 <span style="font-size: 0.7rem; font-weight: 500; color: #64748B;">/ bulan</span></div>
+              <div class="price-sub">Alamat: Kota Pasuruan, Jawa Timur</div>
+            </div>
+            <div class="card-action-row">
+              <a href="program-offline-lab.html" class="btn-detail-link">
+                <span>Lihat Detail →</span>
+              </a>
+              <a href="https://wa.me/6281234567890?text=Booking%20Kelas%20Offline%20Lab%20Pasuruan" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+                Booking Lab
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Class 3 -->
+        <div class="class-card" data-cat="online web">
+          <div>
+            <div class="card-top">
+              <div class="card-icon">🌐</div>
+              <span class="badge-status">Akses 24/7</span>
+            </div>
+            <a href="program-online-bootcamp.html" class="class-title-link">
+              <h3>Kelas Online Bootcamp Interaktif</h3>
+            </a>
+            <p>Belajar mandiri dari mana saja dengan kurikulum video berurutan, tugas mingguan yang direview, dan sesi tanya jawab langsung.</p>
+            <ul class="syllabus-bullets">
+              <li>Video rekaman resolusi tinggi selamanya</li>
+              <li>Akses Discord Community VIP</li>
+              <li>Live code review mingguan bersama mentor</li>
+              <li>Koleksi source code GitHub tiap materi</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-box">
+              <div class="price-lbl">BIAYA INVESTASI</div>
+              <div class="price-num">Rp50.000 <span style="font-size: 0.7rem; font-weight: 500; color: #64748B;">/ bulan</span></div>
+              <div class="price-sub">Belajar dari mana saja lewat laptop/HP</div>
+            </div>
+            <div class="card-action-row">
+              <a href="program-online-bootcamp.html" class="btn-detail-link">
+                <span>Lihat Detail →</span>
+              </a>
+              <a href="https://wa.me/6281234567890?text=Daftar%20Kelas%20Online%20Bootcamp" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+                Mulai Belajar
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Class 4 -->
+        <div class="class-card" data-cat="event">
+          <div>
+            <div class="card-top">
+              <div class="card-icon">🎟️</div>
+              <span class="badge-status" style="background: #E0E7FF; color: #3730A3;">Free RSVP</span>
+            </div>
+            <a href="program-workshop-event.html" class="class-title-link">
+              <h3>Webinar: Roadmap Jadi Software Engineer</h3>
+            </a>
+            <p>Sesi bedah kurikulum dan persiapan karier software engineer, bagaimana menyusun portofolio GitHub yang dilirik perusahaan perbankan & startup.</p>
+            <ul class="syllabus-bullets">
+              <li>Tips lolos tes teknis koding magang</li>
+              <li>Bedah kode clean code di industri</li>
+              <li>Sesi tanya jawab langsung bareng Mas Rahmat</li>
+              <li>E-Sertifikat kehadiran resmi</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-box">
+              <div class="price-lbl">TIKET WEBINAR</div>
+              <div class="price-num" style="color: #059669;">GRATIS</div>
+              <div class="price-sub">Sesi Live Zoom Interaktif</div>
+            </div>
+            <div class="card-action-row">
+              <a href="program-workshop-event.html" class="btn-detail-link">
+                <span>Lihat Detail →</span>
+              </a>
+              <a href="https://wa.me/6281234567890?text=RSVP%20Webinar%20Smart%20Koding" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+                RSVP Gratis
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Class 5 -->
+        <div class="class-card" data-cat="web">
+          <div>
+            <div class="card-top">
+              <div class="card-icon">⚡</div>
+              <span class="badge-status">Kelas Privat</span>
+            </div>
+            <h3>Bimbingan Skripsi & Tugas Akhir Web</h3>
+            <p>Pendampingan 1-on-1 untuk mahasiswa dan siswa SMK yang sedang menyusun tugas akhir, skripsi sistem informasi, atau proyek capstone.</p>
+            <ul class="syllabus-bullets">
+              <li>Konsultasi perancangan database relasional</li>
+              <li>Bantuan fixing error bug aplikasi</li>
+              <li>Persiapan simulasi sidang demonstrasi program</li>
+              <li>Garansi sampai aplikasi berjalan lancar</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-box">
+              <div class="price-lbl">BIAYA INVESTASI</div>
+              <div class="price-num">Konsultasi</div>
+              <div class="price-sub">Sesuai kompleksitas sistem aplikasi</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Konsultasi%20Bimbingan%20Tugas%20Akhir%20Web" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+              Konsultasi Privat
+            </a>
+          </div>
+        </div>
+
+        <!-- Class 6 -->
+        <div class="class-card" data-cat="event">
+          <div>
+            <div class="card-top">
+              <div class="card-icon">🚀</div>
+              <span class="badge-status">Workshop Batch</span>
+            </div>
+            <h3>Workshop 1 Hari: Deploy Laravel ke Server Cloud</h3>
+            <p>Pelatihan langsung cara memindahkan aplikasi web dari komputer lokal (localhost) ke server VPS online siap diakses seluruh dunia.</p>
+            <ul class="syllabus-bullets">
+              <li>Konfigurasi domain dan SSL HTTPS</li>
+              <li>Setup Nginx web server & MySQL production</li>
+              <li>Pengenalan CI/CD GitHub deployment</li>
+              <li>Hand-on praktik langsung ke server live</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-box">
+              <div class="price-lbl">BIAYA WORKSHOP</div>
+              <div class="price-num">Rp50.000</div>
+              <div class="price-sub">Sudah termasuk sewa server VPS uji coba</div>
+            </div>
+            <a href="https://wa.me/6281234567890?text=Daftar%20Workshop%20Deploy%20Cloud" target="_blank" class="btn-gold" style="width: 100%; justify-content: center;">
+              Ikuti Workshop
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script for Filtering -->
+  <script>
+    function filterClass(cat, btn) {
+      document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.class-card');
+      cards.forEach(card => {
+        const itemCat = card.getAttribute('data-cat') || '';
+        if (cat === 'all' || itemCat.includes(cat)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

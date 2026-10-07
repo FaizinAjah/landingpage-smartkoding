@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program Pemrograman Web Tingkat Lanjut (PHP Laravel 11 & MySQL) — Smart Koding Academy</title>
+  <meta name="description" content="Kelas intensif Pemrograman Web Tingkat Lanjut berbasis PHP 8.3, Laravel 11, RESTful API & MySQL di Smart Koding Academy Pasuruan. Belajar arsitektur industri, clean code, dan proyek web nyata.">
+  <meta name="keywords" content="belajar laravel pasuruan, kursus laravel 11, php mvc pasuruan, web tingkat lanjut, smart koding pasuruan">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pemrograman Web Tingkat Lanjut — Smart Koding Academy">
+  <meta property="og:description" content="Kuasai arsitektur MVC, RESTful API, dan Laravel 11 berstandar industri bersama Senior Software Engineer perbankan nasional.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES (MATCHING SUN-YELLOW & GOLDEN THEME)
+       ========================================================================== */
+    :root {
+      --yellow-primary: #FFC400;
+      --yellow-bright: #FFD600;
+      --yellow-light: #FFF9DB;
+      --yellow-tint: #FEFCE8;
+      --yellow-glow: rgba(255, 196, 0, 0.4);
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --amber-700: #B45309;
+      --amber-dark: #78350F;
+
+      --bg-canvas: #FCFBF7;
+      --bg-card: #FFFFFF;
+      --bg-card-subtle: #FFFDF5;
+      --bg-elevated: #F9F7F1;
+      
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --text-faint: #94A3B8;
+
+      --border-light: rgba(226, 232, 240, 0.9);
+      --border-warm: rgba(245, 158, 11, 0.22);
+      --border-hover: rgba(255, 196, 0, 0.65);
+
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+      --shadow-lg: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+      --shadow-glow: 0 8px 30px rgba(255, 196, 0, 0.32);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-canvas);
+      color: var(--text-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .bg-mesh-sunny {
+      background-image:
+        radial-gradient(at 10% 10%, rgba(255, 196, 0, 0.16) 0px, transparent 45%),
+        radial-gradient(at 90% 12%, rgba(245, 158, 11, 0.14) 0px, transparent 48%),
+        radial-gradient(at 50% 45%, rgba(255, 252, 232, 0.85) 0px, transparent 65%),
+        radial-gradient(at 85% 85%, rgba(255, 196, 0, 0.12) 0px, transparent 50%),
+        radial-gradient(at 15% 90%, rgba(245, 158, 11, 0.1) 0px, transparent 55%);
+      background-attachment: fixed;
+    }
+
+    ::selection {
+      background: var(--yellow-bright);
+      color: var(--text-main);
+    }
+
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Buttons */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #FFCD00, #F59E0B);
+      color: #0F172A;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.45);
+      background: linear-gradient(135deg, #FFD600, #D97706);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #FFFFFF;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-light);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      border-color: var(--amber-500);
+      background: var(--yellow-tint);
+      transform: translateY(-2px);
+    }
+
+    /* Section Tag */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--yellow-light);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber-700);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 3px rgba(245, 158, 11, 0.08);
+    }
+    .section-tag .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--amber-600);
+      border-radius: 50%;
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Header Nav */
+    .site-header {
+      background: rgba(252, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.6rem;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-badge {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #FFD600, #F59E0B);
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      color: var(--amber-700);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.75rem;
+    }
+    .nav-menu a {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-body);
+      transition: color 0.2s;
+    }
+    .nav-menu a:hover {
+      color: var(--amber-600);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--amber-600);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+    .dropdown-panel {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 320px;
+      padding: 0.75rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      z-index: 101;
+    }
+    .dropdown:hover .dropdown-panel {
+      display: flex;
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-md);
+      transition: background 0.2s;
+    }
+    .dropdown-item:hover {
+      background: var(--yellow-light);
+    }
+    .dropdown-item.active {
+      background: var(--yellow-tint);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .dropdown-icon {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: var(--radius-sm);
+      background: var(--yellow-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .dropdown-item h5 {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .dropdown-item p {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-top: 0.15rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-bar {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .breadcrumb-list a {
+      color: var(--text-body);
+      transition: color 0.2s;
+    }
+    .breadcrumb-list a:hover {
+      color: var(--amber-600);
+    }
+    .breadcrumb-sep {
+      color: #CBD5E1;
+    }
+    .breadcrumb-active {
+      color: var(--amber-700);
+      font-weight: 700;
+    }
+
+    /* Program Hero */
+    .prog-hero {
+      padding: 3.5rem 0 4.5rem;
+      position: relative;
+    }
+    .prog-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-heading {
+      font-size: 2.85rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin-top: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-heading .highlight-gold {
+      background: linear-gradient(135deg, #D97706, #FFB703);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Key Specs Chips */
+    .specs-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+    .spec-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+    .spec-chip-icon {
+      font-size: 0.85rem;
+    }
+
+    /* Hero CTA Group */
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Guarantee Pill */
+    .guarantee-note {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .guarantee-stars {
+      color: #F59E0B;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    /* Interactive Code Card Hero */
+    .hero-visual-card {
+      background: #0F172A;
+      border-radius: var(--radius-xl);
+      border: 2px solid rgba(255, 196, 0, 0.4);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25), 0 0 30px rgba(255, 196, 0, 0.15);
+      overflow: hidden;
+      position: relative;
+    }
+    .card-mac-header {
+      background: #1E293B;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mac-dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .mac-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .mac-dot.red { background: #EF4444; }
+    .mac-dot.yellow { background: #F59E0B; }
+    .mac-dot.green { background: #10B981; }
+    .card-file-name {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #94A3B8;
+    }
+
+    .code-body {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.8;
+      color: #E2E8F0;
+      overflow-x: auto;
+    }
+    .kw { color: #F472B6; font-weight: 600; }
+    .cls { color: #34D399; font-weight: 600; }
+    .fn { color: #67E8F9; }
+    .str { color: #FDE047; }
+    .num { color: #A78BFA; }
+    .cm { color: #64748B; font-style: italic; }
+
+    .code-live-footer {
+      background: rgba(16, 185, 129, 0.12);
+      border-top: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #34D399;
+    }
+
+    /* Program Highlights Bento */
+    .highlights-section {
+      padding: 4.5rem 0;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .bento-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .bento-card {
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .bento-card:hover {
+      border-color: var(--amber-500);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      background: #FFFFFF;
+    }
+    .bento-card-icon {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: var(--radius-md);
+      background: var(--yellow-light);
+      color: var(--amber-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+    .bento-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+    .bento-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Syllabus Curriculum Section */
+    .syllabus-section {
+      padding: 5rem 0;
+    }
+    .syllabus-timeline {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .module-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .module-card:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+    }
+    .module-header {
+      padding: 1.35rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      background: #FFFFFF;
+      transition: background 0.2s;
+    }
+    .module-header:hover {
+      background: var(--bg-card-subtle);
+    }
+    .module-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .module-num {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #FFC400, #F59E0B);
+      color: #0F172A;
+      font-family: var(--font-mono);
+      font-weight: 900;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .module-title-wrap h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .module-title-wrap .module-duration {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--amber-700);
+      font-weight: 700;
+    }
+    .module-chevron {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: transform 0.25s ease;
+    }
+    .module-card.open .module-chevron {
+      transform: rotate(180deg);
+    }
+    .module-content {
+      padding: 0 1.75rem 1.5rem 5.6rem;
+      display: none;
+      border-top: 1px dashed var(--border-light);
+      margin-top: 0.25rem;
+      padding-top: 1.25rem;
+    }
+    .module-card.open .module-content {
+      display: block;
+    }
+    .lessons-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+    }
+    .lesson-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--text-body);
+    }
+    .lesson-check {
+      color: #10B981;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* Projects Showcase Section */
+    .projects-built-section {
+      padding: 5rem 0;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border-light);
+    }
+    .projects-built-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+    .project-built-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border-light);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s;
+    }
+    .project-built-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--amber-500);
+    }
+    .project-thumb {
+      height: 180px;
+      background: #0F172A;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .project-built-card:hover .project-thumb img {
+      transform: scale(1.05);
+    }
+    .project-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #FFD600;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    .project-body {
+      padding: 1.35rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-body h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+    .project-body p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.15rem;
+      flex: 1;
+    }
+    .project-stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .stack-pill {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: var(--yellow-light);
+      color: var(--amber-700);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* Tuition & Pricing Section */
+    .pricing-detail-section {
+      padding: 5rem 0;
+      background: #FFFFFF;
+    }
+    .pricing-box-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pricing-card {
+      background: var(--bg-canvas);
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s;
+    }
+    .pricing-card.featured {
+      border-color: #FFC400;
+      background: #FFFFFF;
+      box-shadow: 0 16px 40px rgba(255, 196, 0, 0.18);
+    }
+    .popular-ribbon {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: linear-gradient(135deg, #FFC400, #F59E0B);
+      color: #0F172A;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 900;
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .plan-header h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+    .plan-header p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+    .plan-price-wrap {
+      margin: 1.5rem 0;
+    }
+    .price-big {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .price-period {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-left: 0.25rem;
+    }
+    .plan-benefits {
+      list-style: none;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .plan-benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--text-body);
+    }
+    .plan-benefit-item svg {
+      color: #10B981;
+      flex-shrink: 0;
+    }
+
+    /* Mentor Section */
+    .mentor-detail-card {
+      margin-top: 2.5rem;
+      background: var(--bg-canvas);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .mentor-img-box {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 3px solid #FFFFFF;
+      background: #E2E8F0;
+    }
+    .mentor-img-box img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    /* FAQ Section */
+    .faq-wrapper {
+      max-width: 820px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .faq-a {
+      padding: 0 1.5rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    /* Bottom CTA */
+    .bottom-cta-banner {
+      margin: 5rem 0;
+      background: linear-gradient(135deg, #0F172A, #1E293B);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+    }
+    .bottom-cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 196, 0, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Site Footer */
+    .site-footer {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-light);
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-col h5 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-col a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--amber-600);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+    }
+    .mobile-drawer.open {
+      display: flex;
+    }
+    .drawer-body {
+      background: #FFFFFF;
+      width: 300px;
+      height: 100%;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .drawer-body a {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    @media (max-width: 960px) {
+      .prog-hero-grid { grid-template-columns: 1fr; }
+      .bento-grid-3 { grid-template-columns: 1fr; }
+      .projects-built-grid { grid-template-columns: 1fr; }
+      .pricing-box-two { grid-template-columns: 1fr; }
+      .mentor-detail-card { grid-template-columns: 1fr; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-menu { display: none; }
+      .mobile-menu-btn { display: block; }
+      .lessons-list { grid-template-columns: 1fr; }
+      .module-content { padding-left: 1.75rem; }
+    }
+  </style>
+</head>
+<body class="bg-mesh-sunny">
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">SK</div>
+        <div>
+          <div class="brand-title">Smart Koding</div>
+          <div class="brand-sub">Academy • Pasuruan</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li class="dropdown">
+          <button class="dropdown-btn">
+            <span>Program Kelas</span>
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="dropdown-panel">
+            <a href="program-web-lanjut.html" class="dropdown-item active">
+              <div class="dropdown-icon">&lt;/&gt;</div>
+              <div>
+                <h5>Web Tingkat Lanjut</h5>
+                <p>PHP Laravel 11, REST API & MySQL. Program Unggulan.</p>
+              </div>
+            </a>
+            <a href="program-offline-lab.html" class="dropdown-item">
+              <div class="dropdown-icon">🖥️</div>
+              <div>
+                <h5>Kelas Offline Lab Pasuruan</h5>
+                <p>Tatap muka praktikum komputer spek tinggi. Maks 10 siswa.</p>
+              </div>
+            </a>
+            <a href="program-online-bootcamp.html" class="dropdown-item">
+              <div class="dropdown-icon">🌐</div>
+              <div>
+                <h5>Online Live Bootcamp</h5>
+                <p>Kurikulum video, sesi review mingguan & Discord VIP.</p>
+              </div>
+            </a>
+            <a href="program-workshop-event.html" class="dropdown-item">
+              <div class="dropdown-icon">🎟️</div>
+              <div>
+                <h5>Event & Workshop Gratis</h5>
+                <p>Webinar arsitektur backend & bedah portofolio kerja.</p>
+              </div>
+            </a>
+            <div style="border-top: 1px dashed var(--border-light); margin-top: 0.35rem; padding-top: 0.5rem; text-align: center;">
+              <a href="kelas.html" style="font-size: 0.72rem; font-weight: 800; color: var(--amber-600); display: inline-flex; align-items: center; gap: 0.35rem;">
+                <span>Lihat Semua Katalog Program</span>
+                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#silabus">Silabus</a></li>
+        <li><a href="#proyek">Proyek Siswa</a></li>
+        <li><a href="#biaya">Biaya</a></li>
+        <li><a href="#mentor">Mentor</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20tertarik%20dengan%20Program%20Web%20Tingkat%20Lanjut" target="_blank" class="btn-gold">
+          <span>Daftar Kelas Ini</span>
+          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileDrawer()" aria-label="Menu Mobile">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" onclick="toggleMobileDrawer()">
+    <div class="drawer-body" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="brand-title">Menu Program</span>
+        <button onclick="toggleMobileDrawer()" style="background:none; border:none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+      </div>
+      <a href="index.html">← Kembali ke Beranda</a>
+      <a href="program-web-lanjut.html" style="color: var(--amber-600);">✓ Web Tingkat Lanjut (Laravel)</a>
+      <a href="program-offline-lab.html">Kelas Offline Lab Pasuruan</a>
+      <a href="program-online-bootcamp.html">Online Live Bootcamp</a>
+      <a href="program-workshop-event.html">Event & Workshop Gratis</a>
+      <a href="kelas.html">Katalog Semua Kelas</a>
+      <a href="#silabus" onclick="toggleMobileDrawer()">Silabus & Kurikulum</a>
+      <a href="#biaya" onclick="toggleMobileDrawer()">Biaya & Pendaftaran</a>
+      <a href="#mentor" onclick="toggleMobileDrawer()">Profil Instruktur</a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       BREADCRUMB BAR
+       ========================================================================== -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb-list">
+        <a href="index.html">Beranda</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="kelas.html">Program Kelas</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-active">Pemrograman Web Tingkat Lanjut</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="prog-hero">
+    <div class="container">
+      <div class="prog-hero-grid">
+        <div>
+          <span class="section-tag"><span class="dot"></span> PROGRAM UNGGULAN #1 DI PASURUAN</span>
+          <h1 class="hero-heading">
+            Pemrograman Web <br>
+            <span class="highlight-gold">Tingkat Lanjut (Laravel 11)</span>
+          </h1>
+          <p class="hero-lead">
+            Belajar pembuatan aplikasi berbasis web modern dari dasar logika MVC, arsitektur database relasional MySQL, RESTful API, hingga integrasi payment gateway dengan metodologi <em>Clean Code</em> berstandar industri perbankan nasional.
+          </p>
+
+          <!-- Quick Specs Chips -->
+          <div class="specs-chips">
+            <div class="spec-chip">
+              <span class="spec-chip-icon">⏱️</span>
+              <span>12 Minggu (3 Bulan)</span>
+            </div>
+            <div class="spec-chip">
+              <span class="spec-chip-icon">💻</span>
+              <span>PHP 8.3 & Laravel 11</span>
+            </div>
+            <div class="spec-chip">
+              <span class="spec-chip-icon">🗄️</span>
+              <span>MySQL & Eloquent ORM</span>
+            </div>
+            <div class="spec-chip">
+              <span class="spec-chip-icon">🏆</span>
+              <span>Sertifikat Resmi Industri</span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="hero-cta-group">
+            <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20mendaftar%20Program%20Web%20Tingkat%20Lanjut" target="_blank" class="btn-gold">
+              <span>Amankan Kursi Sekarang</span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="#silabus" class="btn-outline">
+              <span>Pelajari Silabus 12 Minggu</span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+          </div>
+
+          <!-- Rating & Social Proof -->
+          <div class="guarantee-note">
+            <div class="guarantee-stars">
+              ★★★★★
+            </div>
+            <div>
+              <strong>5.0 / 5.0 Rating Siswa</strong> • 100% Proyek Portofolio Nyata
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Interactive Laravel Terminal Simulation -->
+        <div class="hero-visual-card">
+          <div class="card-mac-header">
+            <div class="mac-dots">
+              <div class="mac-dot red"></div>
+              <div class="mac-dot yellow"></div>
+              <div class="mac-dot green"></div>
+            </div>
+            <div class="card-file-name">app/Http/Controllers/OrderController.php</div>
+            <div style="font-size: 0.65rem; color: #34D399; font-family: var(--font-mono);">● Live</div>
+          </div>
+
+          <pre class="code-body"><code><span class="kw">&lt;?php</span>
+
+<span class="kw">namespace</span> <span class="cls">App\Http\Controllers</span>;
+
+<span class="kw">use</span> <span class="cls">App\Models\Order</span>;
+<span class="kw">use</span> <span class="cls">Illuminate\Http\Request</span>;
+
+<span class="kw">class</span> <span class="cls">OrderController</span> <span class="kw">extends</span> <span class="cls">Controller</span>
+{
+    <span class="cm">// Sistem Checkout POS & API Pembayaran</span>
+    <span class="kw">public function</span> <span class="fn">checkout</span>(<span class="cls">Request</span> <span class="c-var">$req</span>)
+    {
+        <span class="c-var">$order</span> = <span class="cls">Order</span>::<span class="fn">create</span>([
+            <span class="str">'invoice'</span>    =&gt; <span class="str">'INV-'</span> . <span class="fn">time</span>(),
+            <span class="str">'total'</span>      =&gt; <span class="c-var">$req</span>-&gt;<span class="fn">total</span>,
+            <span class="str">'status'</span>     =&gt; <span class="str">'PAID'</span>,
+            <span class="str">'method'</span>     =&gt; <span class="str">'QRIS_INSTANT'</span>,
+            <span class="str">'student_id'</span> =&gt; <span class="num">101</span>
+        ]);
+
+        <span class="kw">return</span> <span class="fn">response</span>()-&gt;<span class="fn">json</span>([
+            <span class="str">'status'</span>  =&gt; <span class="num">200</span>,
+            <span class="str">'message'</span> =&gt; <span class="str">'Transaksi Berhasil Diverifikasi'</span>,
+            <span class="str">'data'</span>    =&gt; <span class="c-var">$order</span>
+        ]);
+    }
+}</code></pre>
+
+          <div class="code-live-footer">
+            <span>✓ Unit Test Passed: 14 tests, 28 assertions</span>
+            <span style="color: #FFD600;">Laravel 11.4 • PHP 8.3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       KEY BENEFITS / MENGAPA MEMILIH PROGRAM INI
+       ========================================================================== -->
+  <section class="highlights-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <span class="section-tag"><span class="dot"></span> NILAI UNGGUL PROGRAM</span>
+        <h2 class="section-title">Kenapa Kelas Web Lanjut Ini Paling Dicari?</h2>
+        <p class="section-subtitle">
+          Bukan sekadar nonton tutorial YouTube. Di sini kamu menulis kode nyata, memperbaiki error di bawah bimbingan langsung engineer perbankan, dan lulus dengan portofolio web utuh.
+        </p>
+      </div>
+
+      <div class="bento-grid-3">
+        <!-- Benefit 1 -->
+        <div class="bento-card">
+          <div class="bento-card-icon">&lt;/&gt;</div>
+          <h3>Arsitektur MVC & Clean Code</h3>
+          <p>Pelajari pola penulisan kode terstruktur, modular, dan mudah dikembangkan oleh tim developer perusahaan besar tanpa menjadi spaghetti code.</p>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="bento-card">
+          <div class="bento-card-icon">⚡</div>
+          <h3>REST API & Payment Gateway</h3>
+          <p>Praktik langsung integrasi API modern, webhook callback otomatis, dan simulasi pembayaran QRIS & Virtual Account Midtrans.</p>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="bento-card">
+          <div class="bento-card-icon">🛡️</div>
+          <h3>Sistem Autentikasi Multi-Level</h3>
+          <p>Membangun sistem login aman dengan CSRF protection, password hashing bcrypt, permission roles (Admin, Kasir, Pelanggan), dan JWT/Sanctum token.</p>
+        </div>
+
+        <!-- Benefit 4 -->
+        <div class="bento-card">
+          <div class="bento-card-icon">🗄️</div>
+          <h3>Database Relasional Skala Industri</h3>
+          <p>Normalisasi database 3NF, relasi tabel satu-ke-banyak (one-to-many, many-to-many), indexing query cepat, dan migration schema versioning.</p>
+        </div>
+
+        <!-- Benefit 5 -->
+        <div class="bento-card">
+          <div class="bento-card-icon">🚀</div>
+          <h3>Deploy ke Server VPS Cloud</h3>
+          <p>Bukan cuma jalan di localhost komputer sendiri. Siswa diajarkan cara upload aplikasi ke VPS Ubuntu, setup Nginx, SSL domain HTTPS, dan database live.</p>
+        </div>
+
+        <!-- Benefit 6 -->
+        <div class="bento-card">
+          <div class="bento-card-icon">👥</div>
+          <h3>Review Kode 1-on-1 Setiap Minggu</h3>
+          <p>Kode tugasmu dibedah langsung oleh Mas Rahmat (Senior Software Engineer). Dapatkan saran optimasi query dan tips menghadapi tes koding kerja.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SILABUS & KURIKULUM 12 MINGGU LENGKAP
+       ========================================================================== -->
+  <section class="syllabus-section" id="silabus">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <span class="section-tag"><span class="dot"></span> KURIKULUM TERUJI</span>
+        <h2 class="section-title">Roadmap Belajar 12 Minggu Terstruktur</h2>
+        <p class="section-subtitle">
+          Dari pemahaman logika alur data sampai mampu merilis aplikasi web enterprise lengkap. Klik setiap modul untuk melihat materi detail.
+        </p>
+      </div>
+
+      <div class="syllabus-timeline">
+        <!-- Modul 1 -->
+        <div class="module-card open">
+          <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-title-wrap">
+              <div class="module-num">01</div>
+              <div>
+                <h4>Fase 1: Penguasaan PHP 8.3 Modern & Logika OOP</h4>
+                <div class="module-duration">Minggu 1 – 3 • 6 Sesi Pertemuan</div>
+              </div>
+            </div>
+            <svg class="module-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="module-content">
+            <ul class="lessons-list">
+              <li class="lesson-item"><span class="lesson-check">✓</span> Sintaks PHP modern: match expression, arrow functions, named arguments</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Pemrograman Berorientasi Objek (Class, Object, Inheritance, Polymorphism)</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Enkapsulasi, Interface, Abstract Class & Trait</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Composer package manager & autoloading PSR-4</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Dasar Git & GitHub: commit, push, branch, pull request</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Mini Proyek 1: Sistem Manajemen Data Kasir Berbasis OOP PHP</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Modul 2 -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-title-wrap">
+              <div class="module-num">02</div>
+              <div>
+                <h4>Fase 2: Arsitektur Framework Laravel 11 & Eloquent ORM</h4>
+                <div class="module-duration">Minggu 4 – 6 • 6 Sesi Pertemuan</div>
+              </div>
+            </div>
+            <svg class="module-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="module-content">
+            <ul class="lessons-list">
+              <li class="lesson-item"><span class="lesson-check">✓</span> Instalasi Laravel 11, struktur folder baru, dan file konfigurasi</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Routing mendalam: named route, parameter grouping, route model binding</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Controller, Request Validation, Form Request kustom</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Blade Templating Engine: layout inheritance, components, directives</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Database Migrations, Seeders, dan Model Factories</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Eloquent ORM: Relasi One-to-Many, Many-to-Many, Eager Loading (hindari N+1)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Modul 3 -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-title-wrap">
+              <div class="module-num">03</div>
+              <div>
+                <h4>Fase 3: Autentikasi, RESTful API & Keamanan Web</h4>
+                <div class="module-duration">Minggu 7 – 9 • 6 Sesi Pertemuan</div>
+              </div>
+            </div>
+            <svg class="module-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="module-content">
+            <ul class="lessons-list">
+              <li class="lesson-item"><span class="lesson-check">✓</span> Laravel Breeze / Auth scaffolding & password reset flow</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Role & Permissions (Spatie / Policy / Middleware)</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Membangun RESTful API dengan JSON Resource</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> API Authentication menggunakan Laravel Sanctum token</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Pengujian endpoint menggunakan Postman</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Keamanan aplikasi: proteksi SQL Injection, XSS, CSRF Token</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Modul 4 -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule(this)">
+            <div class="module-title-wrap">
+              <div class="module-num">04</div>
+              <div>
+                <h4>Fase 4: Capstone Project Aplikasi Kasir POS & Deployment VPS</h4>
+                <div class="module-duration">Minggu 10 – 12 • 6 Sesi Pertemuan</div>
+              </div>
+            </div>
+            <svg class="module-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="module-content">
+            <ul class="lessons-list">
+              <li class="lesson-item"><span class="lesson-check">✓</span> Studi kasus lengkap: Aplikasi Kasir (POS) & Inventaris Toko Real-Time</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Integrasi Payment Gateway Midtrans (Simulasi QRIS & VA)</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Cetak struk termal PDF dan export laporan penjualan Excel</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Setup VPS Ubuntu Server, Nginx, PHP-FPM, MySQL Production</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Konfigurasi Domain, DNS Record, dan Free SSL Let's Encrypt</li>
+              <li class="lesson-item"><span class="lesson-check">✓</span> Ujian Praktik Akhir & Penyerahan E-Sertifikat Kelulusan Resmi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PROYEK YANG AKAN KAMU BUAT
+       ========================================================================== -->
+  <section class="projects-built-section" id="proyek">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <span class="section-tag"><span class="dot"></span> PORTOFOLIO NYATA</span>
+        <h2 class="section-title">Aplikasi Yang Siap Masuk Portofolio CV Kamu</h2>
+        <p class="section-subtitle">
+          Di akhir program, kamu memiliki 3 aplikasi web fungsional yang bisa kamu pamerkan ke perekrut kerja atau digunakan untuk klien.
+        </p>
+      </div>
+
+      <div class="projects-built-grid">
+        <!-- Project 1 -->
+        <div class="project-built-card">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=600&auto=format&fit=crop&q=80" alt="Sistem Kasir POS">
+            <span class="project-tag">CAPSTONE UTAMA</span>
+          </div>
+          <div class="project-body">
+            <h4>SmartPOS — Aplikasi Kasir & Stok Multi-Cabang</h4>
+            <p>Sistem kasir toko lengkap dengan barcode scanner, manajemen stok real-time, print struk thermal, dan laporan laba rugi bulanan.</p>
+            <div class="project-stack-pills">
+              <span class="stack-pill">Laravel 11</span>
+              <span class="stack-pill">MySQL</span>
+              <span class="stack-pill">Alpine.js</span>
+              <span class="stack-pill">Midtrans QRIS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-built-card">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" alt="E-Commerce API">
+            <span class="project-tag">RESTful API</span>
+          </div>
+          <div class="project-body">
+            <h4>E-Commerce Backend & RajaOngkir API</h4>
+            <p>Arsitektur REST API toko online dengan sistem keranjang belanja, cek ongkos kirim ekspedisi nasional otomatis, dan autentikasi token Sanctum.</p>
+            <div class="project-stack-pills">
+              <span class="stack-pill">PHP 8.3</span>
+              <span class="stack-pill">Sanctum</span>
+              <span class="stack-pill">Postman</span>
+              <span class="stack-pill">RajaOngkir</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-built-card">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80" alt="SaaS Billing System">
+            <span class="project-tag">ENTERPRISE SYSTEM</span>
+          </div>
+          <div class="project-body">
+            <h4>Sistem Tagihan & Booking Layanan</h4>
+            <p>Aplikasi invoice otomatis dengan notifikasi WhatsApp Gateway, status jatuh tempo, dan multi-level user (Owner, Manager, Staff).</p>
+            <div class="project-stack-pills">
+              <span class="stack-pill">Laravel MVC</span>
+              <span class="stack-pill">Cron Jobs</span>
+              <span class="stack-pill">Fonnte WA API</span>
+              <span class="stack-pill">PDF Dompdf</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BIAYA & INVESTASI KELAS WEB LANJUT
+       ========================================================================== -->
+  <section class="pricing-detail-section" id="biaya">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <span class="section-tag"><span class="dot"></span> BIAYA RESMI & TRANSPARAN</span>
+        <h2 class="section-title">Pilihan Paket Belajar Terjangkau</h2>
+        <p class="section-subtitle">
+          Biaya kursus web paling ekonomis dan berkualitas di Kota Pasuruan. Tidak ada biaya pendaftaran tersembunyi.
+        </p>
+      </div>
+
+      <div class="pricing-box-two">
+        <!-- Paket Semester (Featured) -->
+        <div class="pricing-card featured">
+          <span class="popular-ribbon">PALING POPULER & HEMAT</span>
+          <div>
+            <div class="plan-header">
+              <h3>Paket 1 Semester (Tuntas 6 Bulan)</h3>
+              <p>Program bimbingan komprehensif dari fondasi sampai rilis 3 aplikasi portofolio kerja.</p>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="price-big">Rp300.000</span>
+              <span class="price-period">/ semester (hanya Rp50.000 / bln)</span>
+            </div>
+            <ul class="plan-benefits">
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Akses bimbingan intensif 1 semester penuh</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 12 Modul Silabus lengkap + source code GitHub</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Bimbingan pembuatan Capstone Project POS & API</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Review kode 1-on-1 bersama instruktur</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> E-Sertifikat Kelulusan resmi Smart Koding</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Akses komunitas Discord & grup bimbingan selamanya</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Paket%20Semester%20Web%20Lanjut%20Rp300.000" target="_blank" class="btn-gold" style="width: 100%; justify-content: center; padding: 0.9rem;">
+            Daftar Paket Semester
+          </a>
+        </div>
+
+        <!-- Paket Bulanan -->
+        <div class="pricing-card">
+          <div>
+            <div class="plan-header">
+              <h3>Paket Bulanan Fleksibel</h3>
+              <p>Cocok untuk kamu yang ingin mencoba belajar ritme per bulan tanpa komitmen jangka panjang.</p>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="price-big">Rp50.000</span>
+              <span class="price-period">/ bulan</span>
+            </div>
+            <ul class="plan-benefits">
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Bimbingan materi aktif bulan berjalan</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Praktikum tugas mingguan</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Tanya jawab error koding</li>
+              <li class="plan-benefit-item"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Akses grup diskusi WhatsApp</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20mau%20daftar%20Paket%20Bulanan%20Web%20Lanjut%20Rp50.000" target="_blank" class="btn-outline" style="width: 100%; justify-content: center; padding: 0.9rem;">
+            Daftar Paket Bulanan
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MENTOR PROFILE
+       ========================================================================== -->
+  <section class="container" id="mentor" style="padding-bottom: 5rem;">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+      <span class="section-tag"><span class="dot"></span> INSTRUKTUR PENGAMPU</span>
+      <h2 class="section-title">Belajar Langsung dari Praktisi Industri</h2>
+      <p class="section-subtitle">
+        Kurikulum ini dirancang dan dibimbing langsung oleh Senior Software Engineer yang setiap hari mengelola sistem arsitektur perbankan skala jutaan transaksi.
+      </p>
+    </div>
+
+    <div class="mentor-detail-card">
+      <div class="mentor-img-box">
+        <img src="rahmat-ramadhan-putra.png" alt="Rahmat Ramadhan Putra — Senior Software Engineer">
+      </div>
+      <div>
+        <span class="section-tag" style="margin-bottom: 0.5rem;"><span class="dot"></span> SENIOR SOFTWARE ENGINEER</span>
+        <h3 style="font-size: 1.6rem; font-weight: 900; color: var(--text-main); margin-bottom: 0.25rem;">
+          <span style="color: var(--amber-600);">Rahmat</span> Ramadhan Putra
+        </h3>
+        <div style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem;">
+          Eks Bank BNI • SPE Solution • SmartSeller
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-body); line-height: 1.65; margin-bottom: 1.5rem;">
+          "Di dunia kerja nyata, koding bukan cuma soal sintaks jalan atau bisa tampil di browser. Kamu harus tahu cara membuat sistem yang aman dari celah SQL injection, efisien menangani query ribuan data tanpa lemot, dan mudah dirawat tim. Di kelas Web Lanjut ini, semua standar itu saya ajarkan langsung."
+        </p>
+
+        <a href="https://wa.me/6281234567890?text=Halo%20Mas%20Rahmat,%20saya%20ingin%20tanya%20seputar%20materi%20Kelas%20Web%20Lanjut" target="_blank" class="btn-gold">
+          <span>Konsultasi Langsung dengan Mentor via WhatsApp</span>
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FAQ SECTION
+       ========================================================================== -->
+  <section class="container" id="faq" style="padding-bottom: 5rem;">
+    <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+      <span class="section-tag"><span class="dot"></span> TANYA JAWAB UMUM</span>
+      <h2 class="section-title">Pertanyaan Sering Diajukan</h2>
+      <p class="section-subtitle">Punya pertanyaan seputar kelas Pemrograman Web Tingkat Lanjut? Cek jawaban di bawah ini.</p>
+    </div>
+
+    <div class="faq-wrapper">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah pemula yang belum pernah belajar Laravel bisa ikut?</span>
+          <svg class="faq-chevron" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+        <div class="faq-a">
+          Bisa! Di 3 minggu awal kita mengulang kembali fondasi logika PHP 8 modern dan konsep Object Oriented Programming (OOP). Jika kamu memiliki sedikit pemahaman dasar HTML atau PHP dasar, kamu akan sangat nyaman mengikuti kurikulum ini.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah kelas ini diadakan tatap muka offline atau online?</span>
+          <svg class="faq-chevron" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+        <div class="faq-a">
+          Program Web Tingkat Lanjut tersedia dalam dua format yang bisa kamu pilih: tatap muka langsung di Lab Komputer Pasuruan dengan PC spek tinggi disediakan, ATAU format online live review melalui Google Meet/Zoom dan Discord VIP jika kamu berdomisili di luar Pasuruan.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Apakah saya mendapatkan sertifikat setelah selesai?</span>
+          <svg class="faq-chevron" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+        <div class="faq-a">
+          Ya. Setiap siswa yang menyelesaikan tugas praktikum dan Capstone Project POS akan memperoleh E-Sertifikat Kelulusan resmi berstandar kompetensi industri yang bisa diverifikasi secara digital dan dilampirkan di profil LinkedIn atau CV kerja.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Bagaimana jika saya berhalangan hadir di suatu sesi?</span>
+          <svg class="faq-chevron" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+        <div class="faq-a">
+          Tenang! Semua sesi dilengkapi rangkuman materi terstruktur, repositori kode langkah-demi-langkah di GitHub, dan rekaman video yang bisa dipelajari ulang kapan saja tanpa batas waktu.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA BANNER
+       ========================================================================== -->
+  <div class="container">
+    <div class="bottom-cta-banner">
+      <div style="max-width: 600px; position: relative; z-index: 2;">
+        <span class="section-tag" style="background: rgba(255, 196, 0, 0.2); border-color: #FFC400; color: #FFD600;">KUOTA TERBATAS</span>
+        <h2 style="font-size: 2.2rem; font-weight: 900; line-height: 1.2; margin-top: 0.5rem; margin-bottom: 1rem;">
+          Siap Kuasai Web Development Laravel 11 Sekarang?
+        </h2>
+        <p style="font-size: 0.95rem; color: #94A3B8; margin-bottom: 2rem; line-height: 1.6;">
+          Daftarkan dirimu hari ini untuk mendapatkan bimbingan intensif 1 semester hanya dengan Rp300.000 atau Rp50.000 per bulan.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="https://wa.me/6281234567890?text=Halo%20Smart%20Koding,%20saya%20siap%20daftar%20Kelas%20Web%20Tingkat%20Lanjut" target="_blank" class="btn-gold" style="padding: 0.9rem 1.75rem;">
+            <span>Daftar via WhatsApp Sekarang</span>
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href="index.html" class="btn-outline" style="background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.2);">
+            <span>Kembali ke Beranda Utama</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="logo-badge">SK</div>
+            <div>
+              <div class="brand-title">Smart Koding</div>
+              <div class="brand-sub">Academy • Pasuruan</div>
+            </div>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+            Pusat pelatihan pemrograman komputer dan laboratorium praktikum web development di Kota Pasuruan. Dibimbing langsung Senior Software Engineer berstandar industri nyata.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Program Kelas</h5>
+          <ul>
+            <li><a href="program-web-lanjut.html">Web Tingkat Lanjut (Laravel)</a></li>
+            <li><a href="program-offline-lab.html">Kelas Offline Lab Pasuruan</a></li>
+            <li><a href="program-online-bootcamp.html">Online Live Bootcamp</a></li>
+            <li><a href="program-workshop-event.html">Event & Workshop Gratis</a></li>
+            <li><a href="kelas.html">Katalog Semua Kelas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigasi Halaman</h5>
+          <ul>
+            <li><a href="#silabus">Silabus Kurikulum</a></li>
+            <li><a href="#proyek">Proyek Siswa</a></li>
+            <li><a href="#biaya">Biaya Pendidikan</a></li>
+            <li><a href="#mentor">Profil Instruktur</a></li>
+            <li><a href="#faq">Tanya Jawab (FAQ)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Hubungi Kami</h5>
+          <ul>
+            <li><a href="https://wa.me/6281234567890" target="_blank">WhatsApp: 0812-3456-7890</a></li>
+            <li><a href="mailto:info@smartkoding.id">Email: info@smartkoding.id</a></li>
+            <li><span style="font-size: 0.8rem; color: var(--text-muted);">Kota Pasuruan, Jawa Timur</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Smart Koding Academy Pasuruan. Seluruh hak cipta dilindungi.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--amber-700);">Clean Code • Real Skills • High Impact</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    function toggleModule(header) {
+      const card = header.closest('.module-card');
+      card.classList.toggle('open');
+    }
+
+    function toggleFaq(header) {
+      const item = header.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
